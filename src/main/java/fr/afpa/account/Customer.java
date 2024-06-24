@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * Classe qui représente un client, propriétaire de comptes bancaires
  */
 public class Customer {
+    private int id;
     private String lastName;
     private String firstName;
     private LocalDate birthDate;
@@ -14,12 +15,17 @@ public class Customer {
 
     private static ArrayList<Customer> customersList = new ArrayList<>();
 
-    public Customer(String lastName, String firstName, LocalDate birthDate) {
+    public Customer(int id, String lastName, String firstName, LocalDate birthDate) {
+        this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.birthDate = birthDate;
 
         customersList.add(this);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getLastName() {
@@ -50,10 +56,15 @@ public class Customer {
         this.accounts.add(account);
     }
 
+    public void removeAccount(Account account) {
+        this.accounts.remove(account);
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
-                "lastName='" + lastName + '\'' +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", birthDate=" + birthDate +
                 ", accounts=" + accounts +
